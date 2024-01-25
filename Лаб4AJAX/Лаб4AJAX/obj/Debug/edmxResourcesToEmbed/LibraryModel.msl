@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище db_BelashevModelContainer" CdmEntityContainer="db_BelashevEntities2">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="db_BelashevModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="ID_book" ColumnName="ID_book" />
+          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksReaders">
+      <EntityTypeMapping TypeName="db_BelashevModel.BooksReaders">
+        <MappingFragment StoreEntitySet="BooksReaders">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_book" ColumnName="ID_book" />
+          <ScalarProperty Name="ID_reader" ColumnName="ID_reader" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Readers">
+      <EntityTypeMapping TypeName="db_BelashevModel.Readers">
+        <MappingFragment StoreEntitySet="Readers">
+          <ScalarProperty Name="ID_reader" ColumnName="ID_reader" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,4 @@
+Interop - библиотека (через NuGet скачать)
+
+DocumentFormat.OpenXML() - Word, Excel, PowerPoint...
+ClosedXML() - только Excel
