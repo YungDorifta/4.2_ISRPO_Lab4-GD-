@@ -4,19 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище db_BelashevModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище db_BelashevModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="ID_book" />
           </Key>
-          <Property Name="ID_book" Type="int" Nullable="false" />
+          <Property Name="ID_book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Book_name" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="BooksReaders">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_book" Type="int" Nullable="false" />
           <Property Name="ID_reader" Type="int" Nullable="false" />
         </EntityType>
@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="ID_reader" />
           </Key>
-          <Property Name="ID_reader" Type="int" Nullable="false" />
+          <Property Name="ID_reader" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="30" Nullable="false" />
           <Property Name="Surname" Type="nchar" MaxLength="30" Nullable="false" />
         </EntityType>
@@ -37,18 +37,6 @@
             </Principal>
             <Dependent Role="BooksReaders">
               <PropertyRef Name="ID_book" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BooksReaders_BooksReaders">
-          <End Role="BooksReaders" Type="Self.BooksReaders" Multiplicity="1" />
-          <End Role="BooksReaders1" Type="Self.BooksReaders" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="BooksReaders">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BooksReaders1">
-              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -72,17 +60,12 @@
             <End Role="Books" EntitySet="Books" />
             <End Role="BooksReaders" EntitySet="BooksReaders" />
           </AssociationSet>
-          <AssociationSet Name="FK_BooksReaders_BooksReaders" Association="Self.FK_BooksReaders_BooksReaders">
-            <End Role="BooksReaders" EntitySet="BooksReaders" />
-            <End Role="BooksReaders1" EntitySet="BooksReaders" />
-          </AssociationSet>
           <AssociationSet Name="FK_BooksReaders_Readers" Association="Self.FK_BooksReaders_Readers">
             <End Role="Readers" EntitySet="Readers" />
             <End Role="BooksReaders" EntitySet="BooksReaders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_BelashevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

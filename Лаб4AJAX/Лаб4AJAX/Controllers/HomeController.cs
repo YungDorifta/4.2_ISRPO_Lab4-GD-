@@ -13,18 +13,58 @@ namespace Лаб4AJAX.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string pattern, string name, string surname)
+        // Добавление книги
+        public ActionResult AddBook(string bookname)
         {
+            string result = null;
+            if (!String.IsNullOrEmpty(bookname))
+            {
+                using (db_BelashevEntities2 db = new db_BelashevEntities2())
+                {
+                    db.Books.Add(new Books()
+                    {
+                        Book_name = bookname
+                    });
+                    db.SaveChanges();
+
+                    List<Books> books;
+                    books = db.Books.SqlQuery("SELECT * FROM [db_Belashev].[dbo].[Books]").ToList();
+                    ViewBag.Booknames = books;
+
+                    result = "success";
+                }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        // Удаление книги
+        public ActionResult DelBook(string bookname)
+        {
+            string result = null;
+            if (!String.IsNullOrEmpty(bookname))
+            {
+                using (db_BelashevEntities2 db = new db_BelashevEntities2())
+                {
+                    db.Books.SqlQuery("DELETE FROM [db_Belashev].[dbo].[Books] WHERE ([Book_name] = '" + bookname + "')");
+                    //db.Books.Remove
+                    db.SaveChanges();
+
+                    List<Books> books;
+                    books = db.Books.SqlQuery("SELECT * FROM [db_Belashev].[dbo].[Books]").ToList();
+                    ViewBag.Booknames = books;
+
+                    result = "success";
+                }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Index(string pattern)
+        {
+            List<Books> books;
             List<SearchResultLine> result;
             using (db_BelashevEntities2 db = new db_BelashevEntities2())
             {
-                /*db.Books.Add(new Books()
-                {
-                    ID_book = 125,
-                    Book_name = "ghgfhfh",
-
-                });*/
-                db.SaveChanges();
                 result = db.Readers.Join(
                         db.BooksReaders,
                         reader => reader.ID_reader,
@@ -44,6 +84,9 @@ namespace Лаб4AJAX.Controllers
                             Surname = bookreader.Surname,
                             Book_name = book.Book_name
                         }).ToList();
+
+                books = db.Books.SqlQuery("SELECT * FROM [db_Belashev].[dbo].[Books]").ToList();
+                ViewBag.Booknames = books;
 
                 if (pattern == null)
                 {

@@ -3,89 +3,104 @@
 }
 @model Лаб4AJAX.Models.SearchResultLine
 
-<!-- Вывод строки поиска таблицы -->
-<input type="text" id="searchName" />
-<br />
-<table id="SearchResultTable" border="1">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Book_name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.SearchData)
-        {
+<p>@ViewBag.indicator<p>
+
+    <!-- Вывод строки поиска таблицы -->
+    <input type="text" id="searchName" />
+    <br />
+    <table id="SearchResultTable" border="1">
+        <thead>
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Surname</td>
-                <td>@item.Book_name</td>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Book_name</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.SearchData)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Surname</td>
+                    <td>@item.Book_name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<!-- Вывод строк содержащих строку в поле поиска -->
-<script>
-    var inputText = document.getElementById("searchName");
-    function changeOption() {
-        var txt = inputText.value;
-        $.ajax({
-            url: '/Home/Index?pattern=' + txt,
-            type: 'GET',
-            success: function (data) {
-                $("#SearchResultTable tbody tr").remove();
-                for (let i = 0; i < data.length; i++) {
-                    $('#SearchResultTable > tbody:last-child').append('<tr><th scope="row">'
-                        + data[i].Name + '</td><td>'
-                        + data[i].Surname + '</td><td>'
-                        + data[i].Book_name + '</td><td>');
+    <!-- Вывод строк содержащих строку в поле поиска -->
+    <script>
+        var inputText = document.getElementById("searchName");
+        function changeOption() {
+            var txt = inputText.value;
+            $.ajax({
+                url: '/Home/Index?pattern=' + txt,
+                type: 'GET',
+                success: function (data) {
+                    $("#SearchResultTable tbody tr").remove();
+                    for (let i = 0; i < data.length; i++) {
+                        $('#SearchResultTable > tbody:last-child').append('<tr><th scope="row">'
+                            + data[i].Name + '</td><td>'
+                            + data[i].Surname + '</td><td>'
+                            + data[i].Book_name + '</td><td>');
+                    }
                 }
-            }
-        });
-    }
-    inputText.addEventListener("input", changeOption);
-</script>
-<br />
+            });
+        }
+        inputText.addEventListener("input", changeOption);
+    </script>
+    <br />
 
-<!-- Выгрузить в Word -->
-<a href="/Home/GetWord">Get Word</a>
+    <!-- Выгрузить в Word -->
+    <a href="/Home/GetWord">Get Word</a>
 
-<!-- Произвести добавление записи -->
-<script>
-    var AddRecord = document.getElementById("Add");
-    var AddName = document.getElementById("AddName");
-    var AddSurname = document.getElementById("AddSurname");
-    function AddRec() {
-        $.ajax({
-            url: '/Home/Index?name=' + AddName.value + '&surname=' + AddSurname.value;
-            type: 'GET'
-            success: function (data) {
 
-            }
-        });
-    }
-    AddRecord.addEventListener("click", AddRec);
-</script>
 
-<!-- Поле добавления записи -->
-<br>
-<h2>Добавить читателя (Имя, Фамилия)</h2>
-<form>
-    <input type="text" id="AddName">
-    <input type="text" id="AddSurame">
+    <!-- Поле добавления записи -->
+    <br>
+    <h2>Добавить книгу</h2>
+    <input type="text" id="AddBookname">
     <input type="submit" id="Add" value="Добавить запись">
-</form>
-<br>
+    <br>
 
-<!-- Поле удаления записи -->
-<br>
-<h2>Удалить читателя (Имя, Фамилия)</h2>
-<form>
-    <input type="text" id="DeleteName">
-    <input type="text" id="DeleteSurame">
+    <!-- Произвести добавление записи -->
+    <script>
+        var AddRecord = document.getElementById("Add");
+        var AddBookname = document.getElementById("AddBookname");
+        function AddRec() {
+            $.ajax({
+                url: '/Home/AddBook?bookname=' + AddBookname.value,
+                type: 'GET',
+                success: function () { alert("Команда 'Добавить' выполнена") }
+            });
+        }
+        AddRecord.addEventListener("click", AddRec);
+    </script>
+
+    <!-- Поле удаления записи -->
+    <br>
+    <h2>Удалить книгу</h2>
+    <select id="DelBookname">
+        @foreach (var item in ViewBag.Booknames)
+        {
+            <option>@item.Book_name</option>
+        }
+    </select>
     <input type="submit" id="Del" value="Удалить запись">
-</form>
+
+
+    <!-- Произвести удаление записи -->
+    <script>
+        var DelRecord = document.getElementById("Del");
+        var DelBookname = document.getElementById("DelBookname");
+        function DelRec() {
+            $.ajax({
+                url: '/Home/DelBook?bookname=' + DelBookname.value,
+                type: 'GET',
+                success: function () { alert("Команда 'Удалить' выполнена") }
+            });
+        }
+        DelRecord.addEventListener("click", DelRec);
+    </script>

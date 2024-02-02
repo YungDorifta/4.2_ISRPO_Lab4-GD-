@@ -263,8 +263,8 @@ H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\bin\ru\System.Web.WebPages.resources.dll
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\bin\ru\System.Web.WebPages.Deployment.resources.dll
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\bin\ru\System.Web.WebPages.Razor.resources.dll
-H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.csprojAssemblyReference.cache
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.csproj.CoreCompileInputs.cache
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.csproj.CopyComplete
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.dll
 H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.pdb
+H:\ИСРПО\!Лабы\GoogleDrive лабы\!-Лаб4(ГД)\Лаб4AJAX\Лаб4AJAX\obj\Debug\Лаб4AJAX.csprojAssemblyReference.cache
