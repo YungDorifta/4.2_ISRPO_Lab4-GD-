@@ -45,8 +45,8 @@ namespace Лаб4AJAX.Controllers
             {
                 using (db_BelashevEntities2 db = new db_BelashevEntities2())
                 {
-                    db.Books.SqlQuery("DELETE FROM [db_Belashev].[dbo].[Books] WHERE ([Book_name] = '" + bookname + "')");
-                    //db.Books.Remove
+                    List<Books> selectedBooks = db.Books.SqlQuery("SELECT * FROM [db_Belashev].[dbo].[Books] WHERE ([Book_name] = '" + bookname + "')").ToList();
+                    db.Books.Remove(selectedBooks[0]);
                     db.SaveChanges();
 
                     List<Books> books;
@@ -54,6 +54,7 @@ namespace Лаб4AJAX.Controllers
                     ViewBag.Booknames = books;
 
                     result = "success";
+                    this.Redirect("../Home/Index");
                 }
             }
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -260,18 +261,6 @@ namespace Лаб4AJAX.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-        
-        public string addSQL(string name, string surname)
-        {
-            string sqlrequest = "INSERT INTO [db_Belashev].[dbo].[Readers](Name, Surname) VALUES ('" + name + "', '" + surname + "')";
-            return sqlrequest;
-        }
-
-        public string delSQL(string name, string surname)
-        {
-            string sqlrequest = "DELETE FROM [db_Belashev].[dbo].[Readers] WHERE (Name = '" + name + "') AND (Surname = '" + surname + "')";
-            return sqlrequest;
         }
     }
 }
